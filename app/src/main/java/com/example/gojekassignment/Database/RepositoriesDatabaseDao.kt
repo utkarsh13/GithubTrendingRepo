@@ -10,15 +10,15 @@ import androidx.room.Query
 interface RepositoriesDatabaseDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAllRepositories(repositories : List<Repository>)
+    fun insertAllRepositories(databaseRepositories: List<DatabaseRepository>)
 
     @Query("SELECT * FROM repository_table")
-    fun getAllRepositories() : LiveData<List<Repository>>
+    fun getAllRepositories(): LiveData<List<DatabaseRepository>>
 
     @Query("SELECT * FROM repository_table ORDER BY name ASC")
-    fun getAllRepositoriesSortedByName() : List<Repository>
+    fun getAllRepositoriesSortedByName(): List<DatabaseRepository>
 
     @Query("SELECT * FROM repository_table ORDER BY stars DESC")
-    fun getAllRepositoriesSortedByStars() : List<Repository>
+    fun getAllRepositoriesSortedByStars(): List<DatabaseRepository>
 
 }

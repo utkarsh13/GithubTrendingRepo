@@ -1,4 +1,4 @@
-package com.example.gojekassignment.repositories
+package com.example.gojekassignment.trendingRepositories
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
