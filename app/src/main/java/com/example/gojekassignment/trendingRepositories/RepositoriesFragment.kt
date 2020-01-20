@@ -6,13 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 import com.example.gojekassignment.R
 import com.example.gojekassignment.databinding.FragmentRepositoriesBinding
+import com.example.gojekassignment.domain.Repository
 
 
 class RepositoriesFragment : Fragment() {
+
+    private var viewModelAdapter: RepositoriesAdapter? = null
 
     private val viewModel: RepositoriesViewModel by lazy {
         val activity = requireNotNull(this.activity) {
@@ -34,6 +40,19 @@ class RepositoriesFragment : Fragment() {
             false)
         binding.setLifecycleOwner(viewLifecycleOwner)
         binding.viewModel = viewModel
+
+        viewModel.repositories.observe(viewLifecycleOwner, Observer<List<Repository>> { repositories ->
+            repositories?.apply {
+                viewModelAdapter?.repositories = repositories
+            }
+        })
+
+        viewModelAdapter = RepositoriesAdapter()
+
+        binding.root.findViewById<RecyclerView>(R.id.repositories_recycler_view).apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = viewModelAdapter
+        }
 
         return binding.root
     }

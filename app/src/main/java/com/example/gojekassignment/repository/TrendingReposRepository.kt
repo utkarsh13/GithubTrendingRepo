@@ -1,14 +1,17 @@
 package com.example.gojekassignment.repository
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.example.gojekassignment.Database.RepositoriesDatabase
 import com.example.gojekassignment.Database.asDomainModel
 import com.example.gojekassignment.domain.Repository
 import com.example.gojekassignment.network.Network
 import com.example.gojekassignment.network.asDBModel
+import com.example.gojekassignment.trendingRepositories.RepositoriesApiStatus
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.lang.Exception
 
 class TrendingReposRepository (private val database: RepositoriesDatabase) {
 
@@ -16,11 +19,23 @@ class TrendingReposRepository (private val database: RepositoriesDatabase) {
         it.asDomainModel()
     }
 
+    private val _apiStatus = MutableLiveData<RepositoriesApiStatus>()
+
+    val apiStatus: LiveData<RepositoriesApiStatus>
+        get() = _apiStatus
+
     suspend fun refreshRepositories() {
         withContext(Dispatchers.IO) {
-            val repositories = Network.repositories.getAllRepositories().await()
-            database.repositoriesDatabaseDao.insertAllRepositories(repositories.asDBModel())
+            try {
+                _apiStatus.postValue(RepositoriesApiStatus.LOADING)
+                val getRepositoriesDeferred = Network.repositories.getAllRepositories()
+                val repositories = getRepositoriesDeferred.await()
+
+                _apiStatus.postValue(RepositoriesApiStatus.SUCCESS)
+                database.repositoriesDatabaseDao.insertAllRepositories(repositories.asDBModel())
+            } catch (e: Exception) {
+                _apiStatus.postValue(RepositoriesApiStatus.ERROR)
+            }
         }
     }
-
 }

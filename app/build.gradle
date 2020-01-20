@@ -62,4 +62,7 @@ dependencies {
     // Moshi for parsing the JSON format
     implementation "com.squareup.moshi:moshi:$version_moshi"
     implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"
+
+    // Glide for images
+    implementation "com.github.bumptech.glide:glide:$version_glide"
 }

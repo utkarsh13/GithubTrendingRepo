@@ -16,12 +16,11 @@ interface RepositoriesApiService {
     fun getAllRepositories(): Deferred<List<NetworkRepository>>
 }
 
+private const val BASE_URL = "https://github-trending-api.now.sh/"
+
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
-
-
-private const val BASE_URL = "https://mars.udacity.com/"
 
 object Network {
     // Configure retrofit to parse JSON and use coroutines
