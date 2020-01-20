@@ -1,4 +1,4 @@
-package com.example.gojekassignment.database
+package com.example.gojekassignment.Database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

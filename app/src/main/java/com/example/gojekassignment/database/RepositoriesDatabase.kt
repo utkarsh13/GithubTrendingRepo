@@ -1,4 +1,4 @@
-package com.example.gojekassignment.database
+package com.example.gojekassignment.Database
 
 import android.content.Context
 import androidx.room.Database
