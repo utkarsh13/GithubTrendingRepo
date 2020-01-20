@@ -65,4 +65,7 @@ dependencies {
 
     // Glide for images
     implementation "com.github.bumptech.glide:glide:$version_glide"
+
+    // Shimmer
+    implementation 'com.facebook.shimmer:shimmer:0.5.0@aar'
 }

@@ -33,8 +33,8 @@ class TrendingReposRepository (private val database: RepositoriesDatabase) {
                 val getRepositoriesDeferred = Network.repositories.getAllRepositories()
                 val repositories = getRepositoriesDeferred.await()
 
-                _apiStatus.postValue(RepositoriesApiStatus.SUCCESS)
                 database.repositoriesDatabaseDao.insertAllRepositories(repositories.asDBModel())
+                _apiStatus.postValue(RepositoriesApiStatus.SUCCESS)
             } catch (e: Exception) {
                 _apiStatus.postValue(RepositoriesApiStatus.ERROR)
             }

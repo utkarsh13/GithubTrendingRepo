@@ -51,6 +51,10 @@ class RepositoriesViewModel (application: Application) : AndroidViewModel(applic
         }
     }
 
+    fun retryClicked() {
+        refreshRepositories()
+    }
+
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()

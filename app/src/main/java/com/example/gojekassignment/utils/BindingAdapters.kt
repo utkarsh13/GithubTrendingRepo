@@ -4,11 +4,14 @@ import android.graphics.Color
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.gojekassignment.R
+
 
 @BindingAdapter("imageUrl")
 fun setImageUrl(imageView: ImageView, url: String) {
@@ -28,7 +31,10 @@ fun setImageUrl(imageView: ImageView, url: String) {
 @BindingAdapter("backgroundColor")
 fun setBackgroundColor(view: View, color: String?) {
     color?.let {
-        view.setBackgroundColor(Color.parseColor(it))
+        val unwrappedDrawable = AppCompatResources.getDrawable(view.context, R.drawable.circle)
+        val wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable!!)
+        DrawableCompat.setTint(wrappedDrawable, Color.parseColor(it))
+        view.setBackgroundDrawable(wrappedDrawable)
     }
 }
 

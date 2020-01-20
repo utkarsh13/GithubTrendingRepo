@@ -6,5 +6,8 @@
     <color name="placeholderColor">#ffffed</color>
     <color name="expanded_detail_color">#52575c</color>
     <color name="black_color">#000000</color>
+    <color name="white_color">#ffffff</color>
     <color name="toolbarColor">#25282B</color>
+    <color name="shimmer_background">#dedede</color>
+    <color name="green_color">#31b057</color>
 </resources>
