@@ -1,19 +1,18 @@
 package com.example.gojekassignment.trendingRepositories
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import com.example.gojekassignment.R
 import com.example.gojekassignment.databinding.FragmentRepositoriesBinding
 import com.example.gojekassignment.domain.Repository
+import kotlinx.android.synthetic.main.fragment_repositories.*
 
 
 class RepositoriesFragment : Fragment() {
@@ -28,6 +27,12 @@ class RepositoriesFragment : Fragment() {
             .get(RepositoriesViewModel::class.java)
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        setHasOptionsMenu(true)
+        (activity as AppCompatActivity?)!!.setSupportActionBar(trToolbar)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,8 +45,13 @@ class RepositoriesFragment : Fragment() {
             false)
         binding.setLifecycleOwner(viewLifecycleOwner)
         binding.viewModel = viewModel
-
         viewModel.repositories.observe(viewLifecycleOwner, Observer<List<Repository>> { repositories ->
+            repositories?.apply {
+                viewModelAdapter?.repositories = repositories
+            }
+        })
+
+        viewModel.repositoriesSorted.observe(viewLifecycleOwner, Observer<List<Repository>> { repositories ->
             repositories?.apply {
                 viewModelAdapter?.repositories = repositories
             }
@@ -55,6 +65,22 @@ class RepositoriesFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.toolbar_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        viewModel.updateSort(
+            when (item.itemId) {
+                R.id.sort_by_names -> RepositorySort.SORT_NAME
+                R.id.sort_by_stars -> RepositorySort.SORT_STAR
+                else -> RepositorySort.DEFAULT
+            }
+        )
+        return true
     }
 
 }

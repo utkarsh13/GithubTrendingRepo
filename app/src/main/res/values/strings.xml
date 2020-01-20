@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">GoJekAssignment</string>
     <string name="item_image_content_desc">Avatar image</string>
+    <string name="toolbar_title">Trending</string>
+    <string name="sort_by_stars">Sort by stars</string>
+    <string name="sort_by_names">Sort by names</string>
 
 </resources>

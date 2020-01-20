@@ -3,12 +3,14 @@ package com.example.gojekassignment.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
+import com.example.gojekassignment.Database.DatabaseRepository
 import com.example.gojekassignment.Database.RepositoriesDatabase
 import com.example.gojekassignment.Database.asDomainModel
 import com.example.gojekassignment.domain.Repository
 import com.example.gojekassignment.network.Network
 import com.example.gojekassignment.network.asDBModel
 import com.example.gojekassignment.trendingRepositories.RepositoriesApiStatus
+import com.example.gojekassignment.trendingRepositories.RepositorySort
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.lang.Exception
@@ -36,6 +38,18 @@ class TrendingReposRepository (private val database: RepositoriesDatabase) {
             } catch (e: Exception) {
                 _apiStatus.postValue(RepositoriesApiStatus.ERROR)
             }
+        }
+    }
+
+    suspend fun getRepositories(sortType: RepositorySort): List<Repository> {
+        return withContext(Dispatchers.IO) {
+            val repos: List<DatabaseRepository> = when (sortType) {
+                RepositorySort.SORT_NAME -> database.repositoriesDatabaseDao.getAllRepositoriesSortedByName()
+                RepositorySort.SORT_STAR -> database.repositoriesDatabaseDao.getAllRepositoriesSortedByStars()
+                else -> database.repositoriesDatabaseDao.getAllRepositoriesSortedByName()
+            }
+
+            repos.asDomainModel()
         }
     }
 }
