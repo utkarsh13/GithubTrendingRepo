@@ -36,6 +36,10 @@ class RepositoriesViewModel (application: Application) : AndroidViewModel(applic
     var expandedPosition: Int = -1
 
     init {
+        refreshRepositories()
+    }
+
+    fun refreshRepositories() {
         viewModelScope.launch {
             trendingReposRepository.refreshRepositories()
         }

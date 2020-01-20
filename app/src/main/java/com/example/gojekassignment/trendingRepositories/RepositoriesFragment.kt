@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.gojekassignment.R
 import com.example.gojekassignment.databinding.FragmentRepositoriesBinding
 import com.example.gojekassignment.domain.Repository
@@ -26,6 +27,8 @@ class RepositoriesFragment : Fragment() {
         ViewModelProviders.of(this, RepositoriesViewModelFactory(activity.application))
             .get(RepositoriesViewModel::class.java)
     }
+
+    var swipeRefreshLayout: SwipeRefreshLayout? = null
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -45,15 +48,20 @@ class RepositoriesFragment : Fragment() {
             false)
         binding.setLifecycleOwner(viewLifecycleOwner)
         binding.viewModel = viewModel
+
+        setSwipeRefreshLayout(binding)
+
         viewModel.repositories.observe(viewLifecycleOwner, Observer<List<Repository>> { repositories ->
             repositories?.apply {
                 viewModelAdapter?.repositories = repositories
+                stopSwipeRefreshAnimation()
             }
         })
 
         viewModel.repositoriesSorted.observe(viewLifecycleOwner, Observer<List<Repository>> { repositories ->
             repositories?.apply {
                 viewModelAdapter?.repositories = repositories
+                stopSwipeRefreshAnimation()
             }
         })
 
@@ -65,6 +73,21 @@ class RepositoriesFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun stopSwipeRefreshAnimation() {
+        if (swipeRefreshLayout?.isRefreshing == true) {
+            swipeRefreshLayout?.isRefreshing = false
+        }
+    }
+
+    private fun setSwipeRefreshLayout(binding: FragmentRepositoriesBinding) {
+        swipeRefreshLayout = binding.root.findViewById(R.id.swipe_refresh)
+        swipeRefreshLayout?.let {
+            it.setOnRefreshListener {
+                viewModel.refreshRepositories()
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
