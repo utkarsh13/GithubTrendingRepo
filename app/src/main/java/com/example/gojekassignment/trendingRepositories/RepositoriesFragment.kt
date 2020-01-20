@@ -16,6 +16,8 @@ import com.example.gojekassignment.databinding.FragmentRepositoriesBinding
 import com.example.gojekassignment.domain.Repository
 import com.facebook.shimmer.ShimmerFrameLayout
 import kotlinx.android.synthetic.main.appbar_layout.*
+import kotlinx.android.synthetic.main.fragment_repositories.view.*
+import kotlinx.android.synthetic.main.shimmer_layout.view.*
 
 
 class RepositoriesFragment : Fragment() {
@@ -61,10 +63,15 @@ class RepositoriesFragment : Fragment() {
         return binding.root
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        viewModel.expandedPosition = viewModelAdapter?.expandedPosition ?: -1
+    }
+
     private fun setupRecyclerView(binding: FragmentRepositoriesBinding) {
         viewModelAdapter = RepositoriesAdapter(viewModel.expandedPosition)
 
-        binding.root.findViewById<RecyclerView>(R.id.repositories_recycler_view).apply {
+        recyclerView!!.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = viewModelAdapter
         }
@@ -98,6 +105,7 @@ class RepositoriesFragment : Fragment() {
                         viewModelAdapter?.repositories = listOf()
                         recyclerView?.visibility = View.GONE
                         retryView?.visibility = View.GONE
+                        swipeRefreshLayout?.isEnabled = false
                     }
                     RepositoriesApiStatus.SUCCESS -> {
                         shimmerLayout?.stopShimmer()
@@ -105,6 +113,7 @@ class RepositoriesFragment : Fragment() {
                         recyclerView?.visibility = View.VISIBLE
                         retryView?.visibility = View.GONE
                         stopSwipeRefreshAnimation()
+                        swipeRefreshLayout?.isEnabled = true
                     }
                     RepositoriesApiStatus.ERROR -> {
                         shimmerLayout?.stopShimmer()
@@ -112,6 +121,7 @@ class RepositoriesFragment : Fragment() {
                         recyclerView?.visibility = View.GONE
                         retryView?.visibility = View.VISIBLE
                         stopSwipeRefreshAnimation()
+                        swipeRefreshLayout?.isEnabled = false
                     }
                 }
             })
@@ -125,11 +135,11 @@ class RepositoriesFragment : Fragment() {
     }
 
     private fun setRetryView(binding: FragmentRepositoriesBinding) {
-        retryView = binding.root.findViewById(R.id.retry_view)
+        retryView = binding.root.retry_view
     }
 
     private fun setRecyclerView(binding: FragmentRepositoriesBinding) {
-        recyclerView = binding.root.findViewById(R.id.repositories_recycler_view)
+        recyclerView = binding.root.repositories_recycler_view
     }
 
     private fun stopSwipeRefreshAnimation() {
@@ -139,7 +149,7 @@ class RepositoriesFragment : Fragment() {
     }
 
     private fun setSwipeRefreshLayout(binding: FragmentRepositoriesBinding) {
-        swipeRefreshLayout = binding.root.findViewById(R.id.swipe_refresh)
+        swipeRefreshLayout = binding.root.swipe_refresh
         swipeRefreshLayout?.let {
             it.setOnRefreshListener {
                 viewModel.refreshRepositories()
@@ -148,7 +158,7 @@ class RepositoriesFragment : Fragment() {
     }
 
     private fun setShimmerLayout(binding: FragmentRepositoriesBinding) {
-        shimmerLayout = binding.root.findViewById(R.id.fb_shimmer)
+        shimmerLayout = binding.root.fb_shimmer
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

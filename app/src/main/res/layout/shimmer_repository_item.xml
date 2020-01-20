@@ -8,9 +8,9 @@
         android:id="@+id/shimmer_icon"
         android:layout_width="@dimen/item_image_size"
         android:layout_height="@dimen/item_image_size"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginTop="@dimen/margin_24"
+        android:layout_marginEnd="@dimen/default_margin"
         android:background="@drawable/circle"
         android:backgroundTint="@color/shimmer_background" />
 
@@ -32,7 +32,7 @@
         <View
             android:layout_width="260dp"
             android:layout_height="10dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/default_margin"
             android:layout_marginBottom="21dp"
             android:background="@drawable/rectangle" />
     </LinearLayout>

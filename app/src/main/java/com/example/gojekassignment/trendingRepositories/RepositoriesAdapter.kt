@@ -18,6 +18,7 @@ class RepositoriesAdapter(var expandedPosition: Int) : RecyclerView.Adapter<Repo
         set(value) {
             field = value
             notifyDataSetChanged()
+            expandedPosition = -1
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositoriesViewHolder {

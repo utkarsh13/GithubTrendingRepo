@@ -40,15 +40,21 @@ class RepositoriesViewModel (application: Application) : AndroidViewModel(applic
     }
 
     fun refreshRepositories() {
+        resetExpandedPosition()
         viewModelScope.launch {
             trendingReposRepository.refreshRepositories()
         }
     }
 
     fun updateSort(sortType: RepositorySort) {
+        resetExpandedPosition()
         viewModelScope.launch {
             repositoriesSorted.postValue(trendingReposRepository.getRepositories(sortType))
         }
+    }
+
+    private fun resetExpandedPosition() {
+        expandedPosition = -1
     }
 
     fun retryClicked() {
