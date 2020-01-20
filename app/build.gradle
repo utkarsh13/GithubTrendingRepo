@@ -67,5 +67,8 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$version_glide"
 
     // Shimmer
-    implementation 'com.facebook.shimmer:shimmer:0.5.0@aar'
+    implementation "com.facebook.shimmer:shimmer:$version_shimmer"
+
+    // WorkManager
+    implementation "android.arch.work:work-runtime-ktx:$version_work"
 }

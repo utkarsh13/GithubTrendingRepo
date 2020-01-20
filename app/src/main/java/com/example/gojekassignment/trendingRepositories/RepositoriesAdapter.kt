@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.gojekassignment.R
 import com.example.gojekassignment.databinding.RepositoryItemBinding
 import com.example.gojekassignment.domain.Repository
+import kotlinx.android.synthetic.main.repository_item.view.*
 
 
 class RepositoriesAdapter(var expandedPosition: Int) : RecyclerView.Adapter<RepositoriesViewHolder>() {
@@ -37,12 +38,16 @@ class RepositoriesAdapter(var expandedPosition: Int) : RecyclerView.Adapter<Repo
             it.repository = repositories[position]
         }
         holder.viewDataBinding.executePendingBindings()
-        val expandableView = holder.itemView.findViewById<ConstraintLayout>(R.id.expandable_layout)
+        val expandableView = holder.itemView.expandable_layout
         val isExpanded = position==expandedPosition;
         if (position == expandedPosition) {
-            expandableView.visibility = View.VISIBLE
+            if (expandableView.visibility != View.VISIBLE) {
+                expandableView.visibility = View.VISIBLE
+            }
         } else {
-            expandableView.visibility = View.GONE
+            if (expandableView.visibility != View.GONE) {
+                expandableView.visibility = View.GONE
+            }
         }
         holder.itemView.setOnClickListener {
             if (isExpanded) {
@@ -56,7 +61,6 @@ class RepositoriesAdapter(var expandedPosition: Int) : RecyclerView.Adapter<Repo
             }
             expandedPosition = position
             notifyItemChanged(expandedPosition)
-
         }
     }
 

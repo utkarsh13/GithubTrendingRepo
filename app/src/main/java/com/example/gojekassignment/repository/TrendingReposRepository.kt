@@ -14,8 +14,7 @@ import com.example.gojekassignment.network.Network
 import com.example.gojekassignment.network.asDBModel
 import com.example.gojekassignment.trendingRepositories.RepositoriesApiStatus
 import com.example.gojekassignment.trendingRepositories.RepositorySort
-import com.example.gojekassignment.utils.IS_CACHE_AVAILABLE
-import com.example.gojekassignment.utils.putBoolean
+import com.example.gojekassignment.utils.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -49,6 +48,7 @@ class TrendingReposRepository(
 
                     database.repositoriesDatabaseDao.insertAllRepositories(repositories.asDBModel())
                     PreferenceManager.getDefaultSharedPreferences(context).putBoolean(IS_CACHE_AVAILABLE, true)
+                    PreferenceManager.getDefaultSharedPreferences(context).putLong(LAST_CACHE_TIME, System.currentTimeMillis())
                     _apiStatus.postValue(RepositoriesApiStatus.SUCCESS)
                 } catch (e: Exception) {
                     _apiStatus.postValue(RepositoriesApiStatus.ERROR)
@@ -58,7 +58,10 @@ class TrendingReposRepository(
     }
 
     private fun getCacheStatus(): Boolean {
-        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(IS_CACHE_AVAILABLE, false)
+        val isCacheAvailable = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(IS_CACHE_AVAILABLE, false)
+        val lastCacheTime = PreferenceManager.getDefaultSharedPreferences(context).getLong(LAST_CACHE_TIME, 0)
+        val isCacheGood = isCacheGood(lastCacheTime, System.currentTimeMillis())
+        return isCacheAvailable && isCacheGood
     }
 
     private fun checkForInternetConnection(): Boolean {
@@ -74,7 +77,6 @@ class TrendingReposRepository(
                 RepositorySort.SORT_STAR -> database.repositoriesDatabaseDao.getAllRepositoriesSortedByStars()
                 else -> database.repositoriesDatabaseDao.getAllRepositoriesList()
             }
-
             repos.asDomainModel()
         }
     }

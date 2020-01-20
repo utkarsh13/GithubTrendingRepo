@@ -20,7 +20,7 @@ class RepositoriesViewModel (application: Application) : AndroidViewModel(applic
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
 
-    val database = RepositoriesDatabase.getInstance(application)
+    val database = RepositoriesDatabase.getInstance(application.applicationContext)
     val trendingReposRepository = TrendingReposRepository(database, application.applicationContext)
 
     var repositories = trendingReposRepository.repositories
