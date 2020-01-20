@@ -15,6 +15,9 @@ interface RepositoriesDatabaseDao {
     @Query("SELECT * FROM repository_table")
     fun getAllRepositories(): LiveData<List<DatabaseRepository>>
 
+    @Query("SELECT * FROM repository_table")
+    fun getAllRepositoriesList(): List<DatabaseRepository>
+
     @Query("SELECT * FROM repository_table ORDER BY name ASC")
     fun getAllRepositoriesSortedByName(): List<DatabaseRepository>
 

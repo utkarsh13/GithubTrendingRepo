@@ -9,7 +9,7 @@ import com.example.gojekassignment.domain.Repository
 import com.example.gojekassignment.repository.TrendingReposRepository
 import kotlinx.coroutines.*
 
-enum class RepositoriesApiStatus { LOADING, ERROR, SUCCESS }
+enum class RepositoriesApiStatus { LOADING, ERROR, SUCCESS, OFFLINE }
 
 enum class RepositorySort{ SORT_NAME, SORT_STAR, DEFAULT }
 
@@ -21,7 +21,7 @@ class RepositoriesViewModel (application: Application) : AndroidViewModel(applic
 
 
     val database = RepositoriesDatabase.getInstance(application)
-    val trendingReposRepository = TrendingReposRepository(database)
+    val trendingReposRepository = TrendingReposRepository(database, application.applicationContext)
 
     var repositories = trendingReposRepository.repositories
 

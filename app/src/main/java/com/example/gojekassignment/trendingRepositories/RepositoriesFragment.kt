@@ -123,6 +123,15 @@ class RepositoriesFragment : Fragment() {
                         stopSwipeRefreshAnimation()
                         swipeRefreshLayout?.isEnabled = false
                     }
+                    RepositoriesApiStatus.OFFLINE -> {
+                        viewModel.updateSort(RepositorySort.DEFAULT)
+                        shimmerLayout?.stopShimmer()
+                        shimmerLayout?.visibility = View.GONE
+                        recyclerView?.visibility = View.VISIBLE
+                        retryView?.visibility = View.GONE
+                        stopSwipeRefreshAnimation()
+                        swipeRefreshLayout?.isEnabled = true
+                    }
                 }
             })
     }
