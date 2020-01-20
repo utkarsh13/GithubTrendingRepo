@@ -31,6 +31,8 @@ class RepositoriesViewModel (application: Application) : AndroidViewModel(applic
     val repositoriesApiStatus: LiveData<RepositoriesApiStatus>
         get() = _repositoriesApiStatus
 
+    var expandedPosition: Int = -1
+
     init {
         viewModelScope.launch {
             trendingReposRepository.refreshRepositories()

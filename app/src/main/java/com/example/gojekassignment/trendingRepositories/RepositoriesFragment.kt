@@ -47,7 +47,7 @@ class RepositoriesFragment : Fragment() {
             }
         })
 
-        viewModelAdapter = RepositoriesAdapter()
+        viewModelAdapter = RepositoriesAdapter(viewModel.expandedPosition)
 
         binding.root.findViewById<RecyclerView>(R.id.repositories_recycler_view).apply {
             layoutManager = LinearLayoutManager(context)

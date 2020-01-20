@@ -1,15 +1,18 @@
 package com.example.gojekassignment.trendingRepositories
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gojekassignment.R
 import com.example.gojekassignment.databinding.RepositoryItemBinding
 import com.example.gojekassignment.domain.Repository
 
-class RepositoriesAdapter() : RecyclerView.Adapter<RepositoriesViewHolder>() {
+
+class RepositoriesAdapter(var expandedPosition: Int) : RecyclerView.Adapter<RepositoriesViewHolder>() {
 
     var repositories: List<Repository> = emptyList()
         set(value) {
@@ -28,22 +31,36 @@ class RepositoriesAdapter() : RecyclerView.Adapter<RepositoriesViewHolder>() {
 
     override fun getItemCount() = repositories.size
 
-    /**
-     * Called by RecyclerView to display the data at the specified position. This method should
-     * update the contents of the {@link ViewHolder#itemView} to reflect the item at the given
-     * position.
-     */
     override fun onBindViewHolder(holder: RepositoriesViewHolder, position: Int) {
         holder.viewDataBinding.also {
             it.repository = repositories[position]
+        }
+        holder.viewDataBinding.executePendingBindings()
+        val expandableView = holder.itemView.findViewById<ConstraintLayout>(R.id.expandable_layout)
+        val isExpanded = position==expandedPosition;
+        if (position == expandedPosition) {
+            expandableView.visibility = View.VISIBLE
+        } else {
+            expandableView.visibility = View.GONE
+        }
+        holder.itemView.setOnClickListener {
+            if (isExpanded) {
+                expandedPosition = -1
+                notifyItemChanged(position)
+                return@setOnClickListener
+            }
+            if (expandedPosition >= 0) {
+                val prev = expandedPosition
+                notifyItemChanged(prev)
+            }
+            expandedPosition = position
+            notifyItemChanged(expandedPosition)
+
         }
     }
 
 }
 
-/**
- * ViewHolder for DevByte items. All work is done by data binding.
- */
 class RepositoriesViewHolder(val viewDataBinding: RepositoryItemBinding) :
     RecyclerView.ViewHolder(viewDataBinding.root) {
     companion object {

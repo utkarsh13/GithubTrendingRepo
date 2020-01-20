@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">GoJekAssignment</string>
+    <string name="item_image_content_desc">Avatar image</string>
 
 </resources>
