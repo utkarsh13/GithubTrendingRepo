@@ -48,11 +48,7 @@ class RepositoriesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: FragmentRepositoriesBinding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.fragment_repositories,
-            container,
-            false)
+        val binding: FragmentRepositoriesBinding = FragmentRepositoriesBinding.inflate(inflater)
         binding.setLifecycleOwner(viewLifecycleOwner)
         binding.viewModel = viewModel
 
@@ -69,11 +65,16 @@ class RepositoriesFragment : Fragment() {
     }
 
     private fun setupRecyclerView(binding: FragmentRepositoriesBinding) {
-        viewModelAdapter = RepositoriesAdapter(viewModel.expandedPosition)
+        viewModelAdapter = RepositoriesAdapter()
+        viewModelAdapter?.let {
+            it.expandedPosition = viewModel.expandedPosition
+        }
 
-        recyclerView!!.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = viewModelAdapter
+        recyclerView?.let {
+            it.apply {
+                layoutManager = LinearLayoutManager(context)
+                adapter = viewModelAdapter
+            }
         }
     }
 
@@ -90,6 +91,7 @@ class RepositoriesFragment : Fragment() {
             viewLifecycleOwner,
             Observer<List<Repository>> { repositories ->
                 repositories?.apply {
+                    viewModelAdapter?.expandedPosition = -1
                     viewModelAdapter?.repositories = repositories
                 }
             })

@@ -13,14 +13,15 @@ import com.example.gojekassignment.domain.Repository
 import kotlinx.android.synthetic.main.repository_item.view.*
 
 
-class RepositoriesAdapter(var expandedPosition: Int) : RecyclerView.Adapter<RepositoriesViewHolder>() {
+class RepositoriesAdapter() : RecyclerView.Adapter<RepositoriesViewHolder>() {
 
     var repositories: List<Repository> = emptyList()
         set(value) {
             field = value
             notifyDataSetChanged()
-            expandedPosition = -1
         }
+
+    var expandedPosition: Int = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositoriesViewHolder {
         val withDataBinding: RepositoryItemBinding = DataBindingUtil.inflate(
