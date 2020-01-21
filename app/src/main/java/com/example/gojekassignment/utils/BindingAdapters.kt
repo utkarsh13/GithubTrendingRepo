@@ -15,16 +15,15 @@ import com.example.gojekassignment.R
 
 @BindingAdapter("imageUrl")
 fun setImageUrl(imageView: ImageView, url: String) {
-    imageView.setBackgroundColor(
-        ContextCompat.getColor(
-            imageView.context, R.color.placeholderColor
+    val unwrappedDrawable = AppCompatResources.getDrawable(imageView.context, R.drawable.circle)
+    val wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable!!)
+    DrawableCompat.setTint(wrappedDrawable, ContextCompat.getColor(imageView.context, R.color.shimmer_background))
 
-        )
-    )
     Glide
         .with(imageView.context)
         .load(url)
         .apply(RequestOptions().circleCrop())
+        .apply(RequestOptions().placeholder(wrappedDrawable))
         .into(imageView)
 }
 

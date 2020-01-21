@@ -10,9 +10,11 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.gojekassignment.Database.RepositoriesDatabase
 import com.example.gojekassignment.R
 import com.example.gojekassignment.databinding.FragmentRepositoriesBinding
 import com.example.gojekassignment.domain.Repository
+import com.example.gojekassignment.repository.TrendingReposRepository
 import com.facebook.shimmer.ShimmerFrameLayout
 import kotlinx.android.synthetic.main.appbar_layout.*
 import kotlinx.android.synthetic.main.fragment_repositories.view.*
@@ -27,7 +29,9 @@ class RepositoriesFragment : Fragment() {
         val activity = requireNotNull(this.activity) {
             "You can only access the viewModel after onActivityCreated()"
         }
-        ViewModelProviders.of(this, RepositoriesViewModelFactory(activity.application))
+        val database = RepositoriesDatabase.getInstance(activity.applicationContext)
+        val trendingReposRepository = TrendingReposRepository(database, activity.applicationContext)
+        ViewModelProviders.of(this, RepositoriesViewModelFactory(trendingReposRepository))
             .get(RepositoriesViewModel::class.java)
     }
 
@@ -92,6 +96,7 @@ class RepositoriesFragment : Fragment() {
                 repositories?.apply {
                     viewModelAdapter?.expandedPosition = -1
                     viewModelAdapter?.repositories = repositories
+                    recyclerView?.layoutManager?.scrollToPosition(0)
                 }
             })
 
