@@ -25,6 +25,12 @@ android {
     dataBinding {
         enabled = true
     }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
@@ -71,4 +77,12 @@ dependencies {
 
     // WorkManager
     implementation "android.arch.work:work-runtime-ktx:$version_work"
+
+    //Testing
+    testImplementation "junit:junit:$version_junit"
+    androidTestImplementation "androidx.test.ext:junit:$version_ext_junit"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$version_espresso_core"
+    testImplementation "org.robolectric:robolectric:$version_roboelectric"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$version_mockito_kotlin"
+    androidTestImplementation "org.mockito:mockito-android:$version_mockito"
 }

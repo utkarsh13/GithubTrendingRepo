@@ -43,7 +43,7 @@ class TrendingReposRepository(
             withContext(Dispatchers.IO) {
                 try {
                     _apiStatus.postValue(RepositoriesApiStatus.LOADING)
-                    val getRepositoriesDeferred = Network.repositories.getAllRepositories()
+                    val getRepositoriesDeferred = Network.repositories.getAllRepositoriesAsync()
                     val repositories = getRepositoriesDeferred.await()
 
                     database.repositoriesDatabaseDao.insertAllRepositories(repositories.asDBModel())

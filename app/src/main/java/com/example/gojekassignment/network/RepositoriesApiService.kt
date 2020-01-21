@@ -13,7 +13,7 @@ import retrofit2.http.GET
 
 interface RepositoriesApiService {
     @GET("repositories")
-    fun getAllRepositories(): Deferred<List<NetworkRepository>>
+    fun getAllRepositoriesAsync(): Deferred<List<NetworkRepository>>
 }
 
 private const val BASE_URL = "https://github-trending-api.now.sh/"
