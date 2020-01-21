@@ -11,7 +11,7 @@ import com.example.gojekassignment.utils.IS_CACHE_AVAILABLE
 import com.example.gojekassignment.utils.putBoolean
 import retrofit2.HttpException
 
-class RefreshDataWorker(private var appContext: Application, params: WorkerParameters):
+class RefreshDataWorker(appContext: Context, params: WorkerParameters):
     CoroutineWorker(appContext, params) {
 
     companion object {
@@ -19,7 +19,7 @@ class RefreshDataWorker(private var appContext: Application, params: WorkerParam
     }
 
     override suspend fun doWork(): Payload {
-        val database = RepositoriesDatabase.getInstance(appContext)
+        val database = RepositoriesDatabase.getInstance(applicationContext)
         val repository = TrendingReposRepository(database, applicationContext)
 
         try {

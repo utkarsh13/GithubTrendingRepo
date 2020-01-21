@@ -1,6 +1,5 @@
 package com.example.gojekassignment
 
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.work.*
@@ -12,7 +11,7 @@ import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
 
-    val activityScope = CoroutineScope(Dispatchers.Default)
+    private val activityScope = CoroutineScope(Dispatchers.Default)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
