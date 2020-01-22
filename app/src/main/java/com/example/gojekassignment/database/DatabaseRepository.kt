@@ -6,14 +6,14 @@ import com.example.gojekassignment.domain.Repository
 
 @Entity(tableName = "repository_table")
 data class DatabaseRepository(
-    @PrimaryKey
+
     val author: String,
 
-    val name: String?,
+    val name: String,
 
     val avatar: String?,
-
-    val url: String?,
+    @PrimaryKey
+    val url: String,
 
     val description: String?,
 

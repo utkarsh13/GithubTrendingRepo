@@ -1,9 +1,9 @@
 package com.example.gojekassignment.domain
 
-data class Repository( val author: String?,
-                        val name: String?,
+data class Repository( val author: String,
+                        val name: String,
                         val avatar: String?,
-                        val url: String?,
+                        val url: String,
                         val description: String?,
                         val language: String?,
                         val languageColor: String?,
@@ -11,6 +11,6 @@ data class Repository( val author: String?,
                         val forks: Int? ) {
 
     val details: String
-        get() = (description ?: "") + "(" + (url ?: "") + ")"
+        get() = (description ?: "") + " (" + url + ")"
 
 }

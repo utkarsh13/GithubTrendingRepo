@@ -15,7 +15,7 @@ interface RepositoriesDatabaseDao {
     @Query("SELECT * FROM repository_table")
     fun getAllRepositoriesList(): List<DatabaseRepository>
 
-    @Query("SELECT * FROM repository_table ORDER BY name ASC")
+    @Query("SELECT * FROM repository_table ORDER BY lower(name)  ASC")
     fun getAllRepositoriesSortedByName(): List<DatabaseRepository>
 
     @Query("SELECT * FROM repository_table ORDER BY stars DESC")

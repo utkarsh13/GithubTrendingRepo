@@ -40,10 +40,10 @@ class RepositoriesDatabaseTest {
     fun testNameSortedRepositories() {
         val repos: MutableList<DatabaseRepository> = mutableListOf()
         for (i in 0..3) {
-            val repo = DatabaseRepository("author$i",
+            val repo = DatabaseRepository("",
+                                            "name$i",
                                             null,
-                                            null,
-                                            null,
+                                            "url$i",
                                             null,
                                             null,
                                             null,
@@ -57,7 +57,7 @@ class RepositoriesDatabaseTest {
         for (i in 1..3) {
             val previousRepo = dbRepos[i-1]
             val currentRepo = dbRepos[i]
-            assertTrue(previousRepo.author < currentRepo.author)
+            assertTrue(previousRepo.name < currentRepo.name)
         }
     }
 
@@ -67,10 +67,10 @@ class RepositoriesDatabaseTest {
         val repos: MutableList<DatabaseRepository> = mutableListOf()
         for (i in 0..3) {
             val stars = 3-i
-            val repo = DatabaseRepository("author$i",
+            val repo = DatabaseRepository("",
+                "",
                 null,
-                null,
-                null,
+                "name$i",
                 null,
                 null,
                 null,

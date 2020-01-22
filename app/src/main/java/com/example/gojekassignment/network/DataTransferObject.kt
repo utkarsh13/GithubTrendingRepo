@@ -7,9 +7,9 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class NetworkRepository(
     val author: String,
-    val name: String?,
+    val name: String,
     val avatar: String?,
-    val url: String?,
+    val url: String,
     val description: String?,
     val language: String?,
     val languageColor: String?,
