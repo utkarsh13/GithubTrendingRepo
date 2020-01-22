@@ -24,7 +24,8 @@
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
                 tools:itemCount="16"
-                tools:listitem="@layout/repository_item" />
+                tools:listitem="@layout/repository_item"
+                android:visibility="gone"/>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 

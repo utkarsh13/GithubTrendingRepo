@@ -47,8 +47,8 @@ class TrendingReposRepository(
                     val repositories = getRepositoriesDeferred.await()
 
                     database.repositoriesDatabaseDao.insertAllRepositories(repositories.asDBModel())
-                    PreferenceManager.getDefaultSharedPreferences(context).putBoolean(IS_CACHE_AVAILABLE, true)
-                    PreferenceManager.getDefaultSharedPreferences(context).putLong(LAST_CACHE_TIME, System.currentTimeMillis())
+                    context.defaultSharedPreferences.putBoolean(IS_CACHE_AVAILABLE, true)
+                    context.defaultSharedPreferences.putLong(LAST_CACHE_TIME, System.currentTimeMillis())
                     _apiStatus.postValue(RepositoriesApiStatus.SUCCESS)
                 } catch (e: Exception) {
                     _apiStatus.postValue(RepositoriesApiStatus.ERROR)
@@ -58,8 +58,8 @@ class TrendingReposRepository(
     }
 
     private fun getCacheStatus(): Boolean {
-        val isCacheAvailable = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(IS_CACHE_AVAILABLE, false)
-        val lastCacheTime = PreferenceManager.getDefaultSharedPreferences(context).getLong(LAST_CACHE_TIME, 0)
+        val isCacheAvailable = context.defaultSharedPreferences.getBoolean(IS_CACHE_AVAILABLE, false)
+        val lastCacheTime = context.defaultSharedPreferences.getLong(LAST_CACHE_TIME, 0)
         val isCacheGood = isCacheGood(lastCacheTime, System.currentTimeMillis())
         return isCacheAvailable && isCacheGood
     }
