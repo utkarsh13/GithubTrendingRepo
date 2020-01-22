@@ -29,13 +29,27 @@ fun setImageUrl(imageView: ImageView, url: String) {
 
 @BindingAdapter("backgroundColor")
 fun setBackgroundColor(view: View, color: String?) {
-    color?.let {
+    if (color != null) {
         val unwrappedDrawable = AppCompatResources.getDrawable(view.context, R.drawable.circle)
         val wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable!!)
-        DrawableCompat.setTint(wrappedDrawable, Color.parseColor(it))
-        view.setBackgroundDrawable(wrappedDrawable)
+        DrawableCompat.setTint(wrappedDrawable, Color.parseColor(color))
+        view.background = wrappedDrawable
+        view.visibility = View.VISIBLE
+    } else {
+        view.visibility = View.GONE
     }
 }
+
+@BindingAdapter("textViewSetText")
+fun textViewSetText(textView: TextView, text: String?) {
+    if (text != null) {
+        textView.text = text
+        textView.visibility = View.VISIBLE
+    } else {
+        textView.visibility = View.GONE
+    }
+}
+
 
 @BindingAdapter("setText")
 fun setText(tv: TextView, count: Int?) {
