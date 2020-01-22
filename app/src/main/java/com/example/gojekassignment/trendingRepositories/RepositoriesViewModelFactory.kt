@@ -1,4 +1,4 @@
-package com.example.gojekassignment.trendingRepositories
+package com.example.gojekassignment.trendingrepositories
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

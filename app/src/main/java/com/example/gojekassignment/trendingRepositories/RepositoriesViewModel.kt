@@ -1,4 +1,4 @@
-package com.example.gojekassignment.trendingRepositories
+package com.example.gojekassignment.trendingrepositories
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

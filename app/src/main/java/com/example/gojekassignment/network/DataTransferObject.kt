@@ -1,6 +1,6 @@
 package com.example.gojekassignment.network
 
-import com.example.gojekassignment.Database.DatabaseRepository
+import com.example.gojekassignment.database.DatabaseRepository
 import com.squareup.moshi.JsonClass
 
 

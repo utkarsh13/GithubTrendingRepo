@@ -1,11 +1,10 @@
-package com.example.gojekassignment.workManager
+package com.example.gojekassignment.workmanager
 
-import android.app.Application
 import android.content.Context
 import android.preference.PreferenceManager
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.example.gojekassignment.Database.RepositoriesDatabase
+import com.example.gojekassignment.database.RepositoriesDatabase
 import com.example.gojekassignment.repository.TrendingReposRepository
 import com.example.gojekassignment.utils.IS_CACHE_AVAILABLE
 import com.example.gojekassignment.utils.putBoolean

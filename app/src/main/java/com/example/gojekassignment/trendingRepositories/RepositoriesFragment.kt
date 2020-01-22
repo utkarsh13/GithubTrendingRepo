@@ -1,4 +1,4 @@
-package com.example.gojekassignment.trendingRepositories
+package com.example.gojekassignment.trendingrepositories
 
 import android.os.Bundle
 import android.view.*
@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.example.gojekassignment.Database.RepositoriesDatabase
+import com.example.gojekassignment.database.RepositoriesDatabase
 import com.example.gojekassignment.R
 import com.example.gojekassignment.databinding.FragmentRepositoriesBinding
 import com.example.gojekassignment.domain.Repository

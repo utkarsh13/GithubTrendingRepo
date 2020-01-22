@@ -1,4 +1,4 @@
-package com.example.gojekassignment.Database
+package com.example.gojekassignment.database
 
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4

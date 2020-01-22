@@ -3,7 +3,7 @@ package com.example.gojekassignment
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.work.*
-import com.example.gojekassignment.workManager.RefreshDataWorker
+import com.example.gojekassignment.workmanager.RefreshDataWorker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
