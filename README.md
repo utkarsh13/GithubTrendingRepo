@@ -1,7 +1,7 @@
-# Go Jek Assignment
+# Github Trending Repositories App
 
 ## Description
-Go Jek Assignment shows a list of trending github repositories,
+This app shows a list of trending github repositories,
 
 
 Tech stack included :
