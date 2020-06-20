@@ -4,6 +4,10 @@
 This app shows a list of trending github repositories.
 
 
+<img src="https://user-images.githubusercontent.com/8288422/84601430-a2a45a80-ae9d-11ea-98bb-40a1d309eac4.png" height = "600">
+
+
+
 Tech stack included :
 
 - [Navigation Component](https://developer.android.com/guide/navigation) (Implement Navigation)
