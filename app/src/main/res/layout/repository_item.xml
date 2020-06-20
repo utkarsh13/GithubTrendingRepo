@@ -186,7 +186,7 @@
 
         <variable
             name="repository"
-            type="com.example.gojekassignment.domain.Repository" />
+            type="com.utkarsh.githubtrending.domain.Repository" />
 
     </data>
 

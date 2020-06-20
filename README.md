@@ -1,7 +1,7 @@
 # Github Trending Repositories App
 
 ## Description
-This app shows a list of trending github repositories,
+This app shows a list of trending github repositories.
 
 
 Tech stack included :
