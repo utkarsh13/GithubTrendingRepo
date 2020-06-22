@@ -19,7 +19,7 @@
             android:layout_marginStart="@dimen/default_margin_16"
             android:layout_marginTop="@dimen/margin_24"
             android:layout_marginEnd="@dimen/default_margin_16"
-            android:contentDescription="@string/item_image_content_desc"
+            android:contentDescription="@string/item_image_desc"
             app:imageUrl="@{repository.avatar}"
             app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_left"
             app:layout_constraintStart_toStartOf="parent"

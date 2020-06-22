@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Github Trending</string>
-    <string name="item_image_content_desc">Avatar image</string>
+    <string name="item_image_desc">Avatar image</string>
     <string name="sort_by_stars">Sort by stars</string>
     <string name="sort_by_names">Sort by names</string>
     <string name="no_internet_connection">No internet connection</string>
