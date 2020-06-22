@@ -1,4 +1,4 @@
-package com.utkarsh.githubtrending.model.database
+package com.utkarsh.githubtrending.data.database
 
 import android.content.Context
 import androidx.room.Database

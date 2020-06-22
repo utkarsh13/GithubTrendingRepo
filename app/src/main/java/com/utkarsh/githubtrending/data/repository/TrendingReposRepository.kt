@@ -1,18 +1,18 @@
-package com.utkarsh.githubtrending.model.repository
+package com.utkarsh.githubtrending.data.repository
 
 import android.content.Context
 import android.net.ConnectivityManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import com.utkarsh.githubtrending.model.database.DatabaseRepository
-import com.utkarsh.githubtrending.model.database.RepositoriesDatabase
-import com.utkarsh.githubtrending.model.database.asDomainModel
-import com.utkarsh.githubtrending.model.domain.Repository
-import com.utkarsh.githubtrending.model.network.Network
-import com.utkarsh.githubtrending.model.network.asDBModel
-import com.utkarsh.githubtrending.trendingrepositories.RepositoriesApiStatus
-import com.utkarsh.githubtrending.trendingrepositories.RepositorySort
+import com.utkarsh.githubtrending.data.database.DatabaseRepository
+import com.utkarsh.githubtrending.data.database.RepositoriesDatabase
+import com.utkarsh.githubtrending.data.database.asDomainModel
+import com.utkarsh.githubtrending.data.model.Repository
+import com.utkarsh.githubtrending.data.network.Network
+import com.utkarsh.githubtrending.data.network.asDBModel
+import com.utkarsh.githubtrending.ui.trendingRepositories.RepositoriesApiStatus
+import com.utkarsh.githubtrending.ui.trendingRepositories.RepositorySort
 import com.utkarsh.githubtrending.utils.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

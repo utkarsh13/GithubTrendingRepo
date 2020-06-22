@@ -1,10 +1,10 @@
-package com.utkarsh.githubtrending.trendingrepositories
+package com.utkarsh.githubtrending.ui.trendingRepositories
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.utkarsh.githubtrending.model.domain.Repository
-import com.utkarsh.githubtrending.model.repository.TrendingReposRepository
+import com.utkarsh.githubtrending.data.model.Repository
+import com.utkarsh.githubtrending.data.repository.TrendingReposRepository
 import kotlinx.coroutines.*
 
 enum class RepositoriesApiStatus { LOADING, ERROR, SUCCESS, OFFLINE }

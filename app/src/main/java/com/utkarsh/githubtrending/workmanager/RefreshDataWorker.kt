@@ -3,8 +3,8 @@ package com.utkarsh.githubtrending.workmanager
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.utkarsh.githubtrending.model.database.RepositoriesDatabase
-import com.utkarsh.githubtrending.model.repository.TrendingReposRepository
+import com.utkarsh.githubtrending.data.database.RepositoriesDatabase
+import com.utkarsh.githubtrending.data.repository.TrendingReposRepository
 import com.utkarsh.githubtrending.utils.IS_CACHE_AVAILABLE
 import com.utkarsh.githubtrending.utils.defaultSharedPreferences
 import com.utkarsh.githubtrending.utils.putBoolean

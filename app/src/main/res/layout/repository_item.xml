@@ -186,7 +186,7 @@
 
         <variable
             name="repository"
-            type="com.utkarsh.githubtrending.domain.Repository" />
+            type="com.utkarsh.githubtrending.data.model.Repository" />
 
     </data>
 

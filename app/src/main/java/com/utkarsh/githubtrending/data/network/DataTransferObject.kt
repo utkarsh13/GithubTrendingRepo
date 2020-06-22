@@ -1,6 +1,6 @@
-package com.utkarsh.githubtrending.model.network
+package com.utkarsh.githubtrending.data.network
 
-import com.utkarsh.githubtrending.model.database.DatabaseRepository
+import com.utkarsh.githubtrending.data.database.DatabaseRepository
 import com.squareup.moshi.JsonClass
 
 
