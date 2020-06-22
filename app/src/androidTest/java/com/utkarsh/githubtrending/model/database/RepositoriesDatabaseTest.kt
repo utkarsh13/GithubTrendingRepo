@@ -1,4 +1,4 @@
-package com.utkarsh.githubtrending.database
+package com.utkarsh.githubtrending.model.database
 
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4

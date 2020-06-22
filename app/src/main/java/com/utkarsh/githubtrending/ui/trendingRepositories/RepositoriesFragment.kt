@@ -10,11 +10,11 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.utkarsh.githubtrending.database.RepositoriesDatabase
+import com.utkarsh.githubtrending.model.database.RepositoriesDatabase
 import com.utkarsh.githubtrending.R
 import com.utkarsh.githubtrending.databinding.FragmentRepositoriesBinding
-import com.utkarsh.githubtrending.domain.Repository
-import com.utkarsh.githubtrending.repository.TrendingReposRepository
+import com.utkarsh.githubtrending.model.domain.Repository
+import com.utkarsh.githubtrending.model.repository.TrendingReposRepository
 import com.facebook.shimmer.ShimmerFrameLayout
 import kotlinx.android.synthetic.main.appbar_layout.*
 import kotlinx.android.synthetic.main.fragment_repositories.view.*

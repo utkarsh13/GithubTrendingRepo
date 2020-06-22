@@ -1,8 +1,8 @@
-package com.utkarsh.githubtrending.database
+package com.utkarsh.githubtrending.model.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.utkarsh.githubtrending.domain.Repository
+import com.utkarsh.githubtrending.model.domain.Repository
 
 @Entity(tableName = "repository_table")
 data class DatabaseRepository(

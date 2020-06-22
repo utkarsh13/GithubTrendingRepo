@@ -8,7 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.utkarsh.githubtrending.R
 import com.utkarsh.githubtrending.databinding.RepositoryItemBinding
-import com.utkarsh.githubtrending.domain.Repository
+import com.utkarsh.githubtrending.model.domain.Repository
 import kotlinx.android.synthetic.main.repository_item.view.*
 
 

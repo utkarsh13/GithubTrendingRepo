@@ -2,7 +2,7 @@ package com.utkarsh.githubtrending.trendingrepositories
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.utkarsh.githubtrending.repository.TrendingReposRepository
+import com.utkarsh.githubtrending.model.repository.TrendingReposRepository
 
 class RepositoriesViewModelFactory(val trendingReposRepository: TrendingReposRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {

@@ -1,4 +1,4 @@
-package com.utkarsh.githubtrending.domain
+package com.utkarsh.githubtrending.model.domain
 
 data class Repository( val author: String,
                         val name: String,

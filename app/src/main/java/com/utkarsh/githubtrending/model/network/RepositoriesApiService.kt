@@ -1,4 +1,4 @@
-package com.utkarsh.githubtrending.network
+package com.utkarsh.githubtrending.model.network
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
