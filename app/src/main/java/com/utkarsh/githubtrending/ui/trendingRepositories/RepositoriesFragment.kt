@@ -16,6 +16,7 @@ import com.utkarsh.githubtrending.databinding.FragmentRepositoriesBinding
 import com.utkarsh.githubtrending.data.model.Repository
 import com.utkarsh.githubtrending.data.repository.TrendingReposRepository
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.utkarsh.githubtrending.MainActivity
 import kotlinx.android.synthetic.main.appbar_layout.*
 import kotlinx.android.synthetic.main.fragment_repositories.view.*
 import kotlinx.android.synthetic.main.shimmer_layout.view.*
@@ -43,7 +44,7 @@ class RepositoriesFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setHasOptionsMenu(true)
-        (activity as AppCompatActivity?)!!.setSupportActionBar(trToolbar)
+        (activity as MainActivity).tv_toolbar.text = getString(R.string.toolbar_title)
     }
 
     override fun onCreateView(
@@ -52,7 +53,7 @@ class RepositoriesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding: FragmentRepositoriesBinding = FragmentRepositoriesBinding.inflate(inflater)
-        binding.setLifecycleOwner(viewLifecycleOwner)
+        binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
         bindLayouts(binding)

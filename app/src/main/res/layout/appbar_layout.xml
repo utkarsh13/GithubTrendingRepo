@@ -11,12 +11,13 @@
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/trToolbar"
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:title=" "/>
 
         <TextView
+            android:id="@+id/tv_toolbar"
             style="@style/toolBarTitle"
             android:fontFamily="@font/roboto_medium"
             android:textSize="21sp"
@@ -24,8 +25,7 @@
             android:layout_margin="14dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/toolbar_title" />
+            android:layout_centerInParent="true"/>
 
     </RelativeLayout>
 </com.google.android.material.appbar.AppBarLayout>
