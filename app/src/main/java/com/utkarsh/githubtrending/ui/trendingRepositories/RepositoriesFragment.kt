@@ -44,7 +44,14 @@ class RepositoriesFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setHasOptionsMenu(true)
-        (activity as MainActivity).tv_toolbar.text = getString(R.string.toolbar_title)
+
+        setupToolbar()
+    }
+
+    private fun setupToolbar() {
+        val mainActivity = activity as MainActivity
+        mainActivity.tv_toolbar.text = getString(R.string.toolbar_title)
+        mainActivity.toolbar.title = null
     }
 
     override fun onCreateView(
@@ -183,14 +190,12 @@ class RepositoriesFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        viewModel.updateSort(
-            when (item.itemId) {
-                R.id.sort_by_names -> RepositorySort.SORT_NAME
-                R.id.sort_by_stars -> RepositorySort.SORT_STAR
-                else -> RepositorySort.DEFAULT
-            }
-        )
-        return true
+        when (item.itemId) {
+            R.id.sort_by_names -> viewModel.updateSort(RepositorySort.SORT_NAME)
+            R.id.sort_by_stars -> viewModel.updateSort(RepositorySort.SORT_STAR)
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
 }
