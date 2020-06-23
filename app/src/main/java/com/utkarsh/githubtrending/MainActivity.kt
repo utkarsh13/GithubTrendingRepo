@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     private val activityScope = CoroutineScope(Dispatchers.Default)
 
-    private var appBarConfiguration: AppBarConfiguration? = null
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,12 +28,15 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         val navController = findNavController(R.id.nav_host_fragment)
-        appBarConfiguration = AppBarConfiguration(setOf(
-            R.id.repositoriesFragment), drawer_layout)
+        appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.repositories_fragment
+            ), drawer_layout
+        )
 
         setupActionBarWithNavController(
             navController,
-            appBarConfiguration!!
+            appBarConfiguration
         ) //the most important part
         nav_view.setupWithNavController(navController)
 
@@ -43,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
-        return navController.navigateUp(appBarConfiguration!!) || super.onSupportNavigateUp()
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
     private fun initWork() {

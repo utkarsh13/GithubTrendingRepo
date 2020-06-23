@@ -5,8 +5,8 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
+            android:id="@+id/repositories_fragment"
             android:icon="@drawable/circle"
-            android:title="@string/toolbar_title" />
+            android:title="@string/repo_title" />
     </group>
 </menu>

@@ -8,5 +8,6 @@
     <string name="no_internet_connection_subtitle">An alien is probably blocking your signal.</string>
     <string name="retry_text">RETRY</string>
     <string name="toolbar_title">Trending</string>
+    <string name="repo_title">Repositories</string>
 
 </resources>
