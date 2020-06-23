@@ -10,8 +10,8 @@
         <EditTextPreference
             app:dependency="sync"
             android:key="sync_hours"
-            android:singleLine="true"
             android:inputType="number"
+            app:useSimpleSummaryProvider="true"
             android:title="@string/hours_title" />
 
     </PreferenceCategory>

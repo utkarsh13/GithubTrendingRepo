@@ -20,7 +20,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private val activityScope = CoroutineScope(Dispatchers.Default)
 
@@ -59,24 +59,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    private fun setupRecurringWork() {
-        val constraints = Constraints.Builder()
-            .setRequiredNetworkType(NetworkType.CONNECTED)
-            .setRequiresBatteryNotLow(true)
-            .build()
-
-        val repeatingRequest = PeriodicWorkRequestBuilder<RefreshDataWorker>(2, TimeUnit.HOURS)
-            .setConstraints(constraints)
-            .build()
-
-
-        WorkManager.getInstance().enqueueUniquePeriodicWork(
-            RefreshDataWorker.WORK_NAME,
-            ExistingPeriodicWorkPolicy.KEEP,
-            repeatingRequest
-        )
-    }
-
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
             R.id.activity_settings -> {
@@ -84,9 +66,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(intent)
                 drawer_layout.closeDrawer(GravityCompat.START)
             }
-
         }
-
         return false
     }
 }
